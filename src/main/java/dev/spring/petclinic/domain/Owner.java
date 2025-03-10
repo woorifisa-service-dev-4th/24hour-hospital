@@ -15,16 +15,28 @@ public class Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String name;
+    private String firstname;
+    private String lastname;
+    private String address;
+    private String city;
+    private String telephone;
 
 
     @Builder
-    private Owner(String name) {
-        this.name = name;
+    private Owner(String firstname, String lastname, String address, String city, String telephone) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.address = address;
+        this.city = city;
+        this.telephone = telephone;
     }
 
-    public static Owner of(String name) {
-        return Owner.builder().name(name).build();
+    public static Owner of(String firstname, String lastname, String address, String city, String telephone) {
+        return Owner.builder()
+                .firstname(firstname)
+                .lastname(lastname)
+                .address(address)
+                .city(city)
+                .telephone(telephone).build();
     }
 }
