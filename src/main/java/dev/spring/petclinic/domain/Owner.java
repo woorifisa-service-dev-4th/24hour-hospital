@@ -2,41 +2,45 @@ package dev.spring.petclinic.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "owners")
 public class Owner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstname;
-    private String lastname;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
     private String address;
+
     private String city;
+
     private String telephone;
 
-
     @Builder
-    private Owner(String firstname, String lastname, String address, String city, String telephone) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    private Owner(String firstName, String lastName, String address, String city, String telephone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.address = address;
         this.city = city;
         this.telephone = telephone;
     }
 
-    public static Owner of(String firstname, String lastname, String address, String city, String telephone) {
+    public static Owner of(String firstName, String lastName, String address, String city, String telephone) {
         return Owner.builder()
-                .firstname(firstname)
-                .lastname(lastname)
-                .address(address)
-                .city(city)
-                .telephone(telephone).build();
+          .firstName(firstName)
+          .lastName(lastName)
+          .address(address)
+          .city(city)
+          .telephone(telephone).build();
     }
 }
