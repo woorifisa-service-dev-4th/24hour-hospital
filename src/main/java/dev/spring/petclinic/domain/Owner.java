@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -15,13 +16,15 @@ public class Owner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
 
     @Builder
-    private Owner() {
-
+    private Owner(String name) {
+        this.name = name;
     }
 
-    public static Owner of() {
-        return
+    public static Owner of(String name) {
+        return Owner.builder().name(name).build();
     }
 }
