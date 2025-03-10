@@ -45,12 +45,6 @@ public class OwnerController {
       @GetMapping("/{id}")
       public String getOwnerDetail(@PathVariable("id") Long ownerId, Model model) {
           Owner owner = ownerService.findOwnerWithPetsAndVisits(ownerId);
-          System.out.println("====owner====");
-          System.out.println(owner.getId());
-          System.out.println(owner.getFirstName() + " " + owner.getLastName());
-          System.out.println(owner.getAddress() + " " + owner.getCity());
-          System.out.println(owner.getTelephone());
-          System.out.println(owner.getPets());
           model.addAttribute("owner", owner);
           return "owners/ownerDetails";
       }

@@ -13,15 +13,4 @@ public class OwnerDetailResponseDto {
     private String address;
     private String city;
     private String telephone;
-
-    public static OwnerDetailResponseDto from(Owner owner) {
-        return OwnerDetailResponseDto.builder()
-                .id(owner.getId())
-                .firstName(owner.getFirstName())
-                .lastName(owner.getLastName())
-                .address(owner.getAddress())
-                .city(owner.getCity())
-                .telephone(owner.getCity())
-                .build();
-    }
 }
