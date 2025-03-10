@@ -24,4 +24,9 @@ public class Type {
     public static Type of(String name) {
         return Type.builder().name(name).build();
     }
+
+    @Override
+    public String toString() {
+        return name;  // 또는 원하는 다른 필드 출력
+    }
 }

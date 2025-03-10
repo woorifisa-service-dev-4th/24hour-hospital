@@ -5,6 +5,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Getter
@@ -28,12 +31,19 @@ public class Pet {
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER)
+    private List<Visit> visits;
+
+
     @Builder
     public Pet(String name, LocalDate birthDate, Type type, Owner owner) {
         this.name = name;
         this.birthDate = birthDate;
         this.type = type;
         this.owner = owner;
+        this.visits = new ArrayList<>();
     }
 
     public static Pet of(String name, LocalDate birthDate, Type type, Owner owner) {
@@ -43,5 +53,10 @@ public class Pet {
                 .type(type)
                 .owner(owner)
                 .build();
+    }
+
+    @Override
+    public String toString() {
+        return "Pet{name='" + name + "', birthDate=" + birthDate + ", type=" + type + "}";
     }
 }
