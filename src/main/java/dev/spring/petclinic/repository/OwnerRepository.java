@@ -1,6 +1,7 @@
 package dev.spring.petclinic.repository;
 
+import dev.spring.petclinic.domain.Owner;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OwnerRepository implements JpaRepository<Owner,Long> {
+public interface OwnerRepository extends JpaRepository<Owner,Long> {
 }
