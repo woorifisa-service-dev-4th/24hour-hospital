@@ -4,11 +4,15 @@ import dev.spring.petclinic.domain.Owner;
 import dev.spring.petclinic.dto.OwnerDto;
 import dev.spring.petclinic.service.OwnerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -38,4 +42,21 @@ public class OwnerController {
     return "redirect:/owners/" + savedOwner.getId();
   }
 
+  @GetMapping(value = "/owners")
+  public String processFindForm(@RequestParam(defaultValue = "") String lastName, Pageable pageable, Model model) {
+    Page<Owner> ownersPage = ownerService.findByLastName(lastName, pageable);
+    if (ownersPage.isEmpty()) {
+      model.addAttribute("notFound", true);
+      return "owners/findOwners";
+    } else if (ownersPage.getTotalElements() == 1) {
+      Owner owner = ownersPage.getContent().get(0);
+      return "redirect:/owners/" + owner.getId();
+    } else {
+      model.addAttribute("selections", ownersPage.getContent());
+      return "owners/ownersList";
+    }
+  }
 }
+
+
+
