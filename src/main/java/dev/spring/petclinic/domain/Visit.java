@@ -5,6 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,26 +18,26 @@ public class Visit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "pet_id")
     private Pet pet;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate visitDate;
+    private LocalDate date;
 
     private String description;
 
     @Builder
-    public Visit(Pet pet, LocalDate visitDate, String description) {
+    public Visit(Pet pet, LocalDate date, String description) {
         this.pet = pet;
-        this.visitDate = visitDate;
+        this.date = date;
         this.description = description;
     }
 
-    public static Visit of(Pet pet, LocalDate visitDate, String description) {
+    public static Visit of(Pet pet, LocalDate date, String description) {
         return Visit.builder()
                 .pet(pet)
-                .visitDate(visitDate)
+                .date(date)
                 .description(description)
                 .build();
     }
