@@ -3,15 +3,15 @@ package dev.spring.petclinic.controller;
 import dev.spring.petclinic.domain.Owner;
 import dev.spring.petclinic.dto.OwnerDto;
 import dev.spring.petclinic.service.OwnerService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
-import java.util.List;
 
 @Controller
 @RequestMapping("/owners")
@@ -21,6 +21,7 @@ public class OwnerController {
     private final OwnerService ownerService;
 
     // /owners/find 경로에 대한 html 폼 템플릿 반환
+    @Operation(summary = "검색")
     @GetMapping("/find")
     public String showFindOwnerForm(Model model) {
         model.addAttribute("owner", new OwnerDto());

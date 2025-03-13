@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    group:
+      test: "test"
+      local: "local, datasource"
+      dev: "dev, datasource"
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui-custom.html
+    enabled: true
