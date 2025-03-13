@@ -2,14 +2,18 @@ package dev.spring.petclinic.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.MetaValue;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Index;
 
 @Entity
+@Table(name = "owners", indexes = {
+        @Index(name = "idx_last_name", columnList = "last_name")
+})
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "owners")
 public class Owner {
 
     @Id
@@ -22,10 +26,13 @@ public class Owner {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(length = 255)
     private String address;
 
+    @Column(length = 80)
     private String city;
 
+    @Column(length = 20)
     private String telephone;
 
     @Setter
