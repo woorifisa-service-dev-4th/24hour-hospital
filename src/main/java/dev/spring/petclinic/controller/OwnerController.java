@@ -5,11 +5,10 @@ import dev.spring.petclinic.dto.OwnerDto;
 import dev.spring.petclinic.service.OwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
-import java.util.List;
 
 @Controller
 @RequestMapping("/owners")

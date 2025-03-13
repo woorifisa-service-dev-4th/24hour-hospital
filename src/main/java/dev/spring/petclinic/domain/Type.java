@@ -1,8 +1,7 @@
 package dev.spring.petclinic.domain;
 
+import jakarta.persistence.*;
 import lombok.*;
-
-import javax.persistence.*;
 
 @Entity
 @Getter

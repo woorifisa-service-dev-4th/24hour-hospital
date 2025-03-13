@@ -5,6 +5,7 @@ import dev.spring.petclinic.util.EnvironmentUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,8 +16,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import static dev.spring.petclinic.constant.SwaggerUrlConstant.getSwaggerUrls;
 import static dev.spring.petclinic.constant.UrlConstants.LOCAL_CLIENT_URLS;
 import static org.springframework.http.HttpHeaders.SET_COOKIE;
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
@@ -34,6 +37,16 @@ public class WebSecurity {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
     }
 
+
+//    @Bean
+//    @Order(1)
+//    public SecurityFilterChain swaggerFilterChain(HttpSecurity http) throws Exception {
+//        defaultFilterChain(http);
+//
+//        http.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
+//
+//        return http.build();
+//    }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         defaultFilterChain(http);

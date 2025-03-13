@@ -5,8 +5,8 @@ import dev.spring.petclinic.dto.OwnerDetailResponseDto;
 import dev.spring.petclinic.repository.OwnerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
