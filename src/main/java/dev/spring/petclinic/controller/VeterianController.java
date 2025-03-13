@@ -2,6 +2,7 @@ package dev.spring.petclinic.controller;
 
 import dev.spring.petclinic.dto.VetetrianResponseDto;
 import dev.spring.petclinic.service.VeterianService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import java.util.List;
 public class VeterianController {
     private final VeterianService veterianService;
 
+    @Operation(summary="수의사")
     @GetMapping("")
     public ResponseEntity<List<VetetrianResponseDto>> showVeterians() {
         List<VetetrianResponseDto> vetResDtoList = veterianService.getAllVeterians();
