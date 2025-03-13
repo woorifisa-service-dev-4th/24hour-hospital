@@ -1,4 +1,4 @@
-package dev.spring.petclinic.dto;
+package dev.spring.petclinic.dto.response;
 
 import dev.spring.petclinic.domain.Pet;
 import lombok.AllArgsConstructor;
