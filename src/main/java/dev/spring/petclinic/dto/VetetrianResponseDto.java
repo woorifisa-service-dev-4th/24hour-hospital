@@ -4,7 +4,6 @@ import dev.spring.petclinic.domain.Vets;
 import lombok.*;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
