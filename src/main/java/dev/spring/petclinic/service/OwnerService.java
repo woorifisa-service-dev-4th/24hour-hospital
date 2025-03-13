@@ -32,8 +32,13 @@ public class OwnerService {
     }
 
     public List<OwnerListResponseDto> findByLastName(String lastName) {
-        List<Owner> ownerList = ownerRepository.findByLastNameContainingIgnoreCase(lastName);
-        return ownerList.stream().map(OwnerListResponseDto::of).collect(Collectors.toList());
+        if (lastName != null) {
+            List<Owner> ownerList = ownerRepository.findByLastNameContainingIgnoreCase(lastName);
+            return ownerList.stream().map(OwnerListResponseDto::of).collect(Collectors.toList());
+        } else {
+            List<Owner> allOwnerList = ownerRepository.findAll();
+            return allOwnerList.stream().map(OwnerListResponseDto::of).collect(Collectors.toList());
+        }
     }
 
     public OwnerDetailResponseDto findOwnerWithPetsAndVisits(Long ownerId) {
