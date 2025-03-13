@@ -1,19 +1,15 @@
 package dev.spring.petclinic.service;
 
 import dev.spring.petclinic.domain.Owner;
-import dev.spring.petclinic.dto.OwnerDetailResponseDto;
 import dev.spring.petclinic.dto.OwnerListResponseDto;
+import dev.spring.petclinic.dto.OwnerRequestDto;
 import dev.spring.petclinic.repository.OwnerRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,8 +17,17 @@ import java.util.stream.Collectors;
 public class OwnerService {
     private final OwnerRepository ownerRepository;
 
-    public Owner saveOwner(Owner owner) {
-        return ownerRepository.save(owner);
+    public Long saveOwner(OwnerRequestDto ownerReqDto) {
+        Owner owner = Owner.builder()
+                .firstName(ownerReqDto.getFirstName())
+                .lastName(ownerReqDto.getLastName())
+                .address(ownerReqDto.getAddress())
+                .city(ownerReqDto.getCity())
+                .telephone(ownerReqDto.getCity())
+                .build();
+
+        Owner newOwner = ownerRepository.save(owner);
+        return newOwner.getId();
     }
 
     @Transactional
