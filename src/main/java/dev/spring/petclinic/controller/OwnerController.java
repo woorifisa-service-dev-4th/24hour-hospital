@@ -34,7 +34,7 @@ public class OwnerController {
 
     // owner 추가
     @Operation(summary = "owner 추가")
-    @PostMapping("/new")
+    @PostMapping("")
     public ResponseEntity<?> addOwner(@RequestBody OwnerRequestDto ownerRequestDto) {
         Long userId = ownerService.saveOwner(ownerRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(userId);
