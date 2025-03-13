@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
 
 @RestController
@@ -42,9 +44,13 @@ public class OwnerController {
 
     @Operation(summary = "owner detail 조회")
     @GetMapping("/{id}")
-    public ResponseEntity<OwnerDetailResponseDto> getOwnerDetail(@PathVariable("id") Long ownerId) {
-        OwnerDetailResponseDto ownerDetail = ownerService.findOwnerWithPetsAndVisits(ownerId);
-        return ResponseEntity.status(HttpStatus.OK).body(ownerDetail);
+    public ResponseEntity<?> getOwnerDetail(@PathVariable("id") Long ownerId) {
+        try {
+            OwnerDetailResponseDto ownerDetail = ownerService.findOwnerWithPetsAndVisits(ownerId);
+            return ResponseEntity.ok(ownerDetail);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", e.getMessage()));
+        }
     }
 
 }
