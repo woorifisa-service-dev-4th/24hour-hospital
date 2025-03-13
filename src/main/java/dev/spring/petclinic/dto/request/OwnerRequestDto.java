@@ -1,6 +1,5 @@
-package dev.spring.petclinic.dto;
+package dev.spring.petclinic.dto.request;
 
-import dev.spring.petclinic.domain.Owner;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

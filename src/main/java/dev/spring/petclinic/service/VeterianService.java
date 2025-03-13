@@ -1,7 +1,7 @@
 package dev.spring.petclinic.service;
 
 import dev.spring.petclinic.domain.Vets;
-import dev.spring.petclinic.dto.VetetrianResponseDto;
+import dev.spring.petclinic.dto.response.VetetrianResponseDto;
 import dev.spring.petclinic.repository.VetsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
